@@ -47,13 +47,212 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+// My Variables
+@green: black;
+@darkgreen: forestgreen;
+@lightgreen: lime;
+@lightgrey: #CCC9DC;
+@link-color: @green;
+@background-color-bright: @lightgreen;
+@background-color-medium: @darkgreen;
+@background-color-light: @lightgrey;
+@main-font: Courier, Arial, Sans-serif;
+@second-font: 'Dosis';
+@largest-font-size: 7em;
+@small-font-size: 2em;
+@largest-header-padding-bottom: .5em;
+@content-font-size: 2.6em;
 
+// 2 Mixins
+
+.content-size-and-margin-bottom() {
+    font-size: @content-font-size;
+    line-height: 1.5em;
+    margin-bottom: 2em;
+}
+
+.bright-background-light-color() {
+    background-color: @background-color-bright;
+    color: white;
+}
+
+// General Styles
 /* Set every element's box-sizing to border-box */
 * {
     box-sizing: border-box;
 }
 
+
 html, body {
     height: 100%;
+    font-size: 62.5%;
+    font-family: @second-font, @main-font;
 }
+
+h1 {
+    font-size: @largest-font-size;
+    padding-bottom: @largest-header-padding-bottom;
+}
+
+h2 {
+    font-size: @largest-font-size ;
+    padding-bottom: @largest-header-padding-bottom ;
+}
+
+h3 {
+    font-size: @largest-font-size;
+    padding-bottom: @largest-header-padding-bottom;
+}
+
+h4 {
+    font-size: @small-font-size;
+    padding-bottom: @largest-header-padding-bottom ;
+}
+
+p {
+    .content-size-and-margin-bottom();
+}
+
+table {
+    .content-size-and-margin-bottom();
+}
+
+ul {
+    .content-size-and-margin-bottom();
+}
+
+.container {
+    margin: 2em auto;
+    max-width: 90em;
+    @media (max-width: 500px) {
+        margin: 0 auto;
+    }
+}
+
+
+
+header {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 16px;
+    font-size: 10px;
+    line-height: 1.5;
+    box-shadow: 0 0 25px 0 black;
+    
+    nav {
+		background-color: @lightgreen;
+		display: flex;
+    	justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        a {
+            text-decoration: underline;
+            color: @link-color;
+			font-size: 3em;
+            width: 100%;
+            padding: 16px;
+	  		display: flex;
+   			 flex-direction: column;
+			
+        }        
+    }
+    @media (max-width: 500px) {
+        nav {
+			display: flex;
+			flex-wrap: wrap;
+			
+            margin: 0 auto;
+            width: 100%;
+            
+            a {
+                width: 100%;
+				padding: 20px;
+				border-bottom: 1px solid black;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.top-section {
+    padding: 3em;
+    background-color: @background-color-light;
+    margin: 10%;
+    box-shadow: 0 0 25px 0 black;
+
+    h4 {
+        border-bottom: solid 1px grey;
+    }
+    p {
+        margin-top: 2em;
+    }
+    button {
+        .bright-background-light-color;
+        padding: .5em;
+        font-size: 3em;
+        font-weight: bold;
+    }
+    @media (max-width: 500px) {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.middle-section {
+    margin-top: 2em;
+    margin: 10%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    .middle-section-column {
+        width: 45%;
+    }
+    li {
+        padding: 1em;
+        border: solid 1px lightgrey;
+    }
+    @media (max-width: 500px) {
+		width: 100%;
+	  	display: flex;
+    	flex-direction: column;
+        .middle-section-column {
+			width: 90%;
+			
+        }
+    }
+}
+
+.bottom-section {
+    table {
+        width: 100%;
+        tr:first-child {
+            font-weight: bold;
+        }
+        tr:nth-child(odd) {
+            background-color: @background-color-light;
+        }
+        tr:nth-child(even) {
+            background-color: @background-color-medium;
+        }
+        td {
+            padding: 1em;
+        }
+    }
+    @media (max-width: 500px) {
+        margin: 0 auto;
+        width: 90%;
+    }
+}
+
+footer {
+    font-size: @content-font-size;
+    .bright-background-light-color;
+    text-align: center;
+    padding: 1.5em;
+}
+
 
